@@ -32,7 +32,7 @@ form.addEventListener('input', throttle(onInput => {
     formData.email = form.nextElementSibling.email.value;
     formData.message = form.nextElementSibling.message.value;
     localStorage.setItem('formKey', JSON.stringify(formData));
-}, 500),
+}, 1000),
 );
 
 function fillTheForm() {
