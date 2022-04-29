@@ -2,8 +2,6 @@ import throttle from "lodash.throttle";
 
 const formKey = "feedback-form-state";
 
-// import { Value } from "sass";
-
 const form = document.querySelector('.feedback-form');
 
 form.addEventListener('submit', event => {
@@ -29,6 +27,13 @@ form.addEventListener('change', event => {
         localStorage.setItem('formKey', JSON.stringify(parsedFilters));
     }
 });
+
+form.addEventListener('input', throttle(onInput => {
+    formData.email = form.nextElementSibling.email.value;
+    formData.message = form.nextElementSibling.message.value;
+    localStorage.setItem('formKey', JSON.stringify(formData));
+}, 500),
+);
 
 function fillTheForm() {
     let parsedFilters = localStorage.getItem('formKey');
