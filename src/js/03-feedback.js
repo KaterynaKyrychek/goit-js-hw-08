@@ -7,9 +7,10 @@ const form = document.querySelector('.feedback-form');
 form.addEventListener('submit', event => {
     event.preventDefault();
     const formData = new FormData(form);
-    formData.forEach((value, name) =>  {
-        formData[name] = value;
-    });
+    formData.forEach((value, name) => console.log(value, name));
+    // {
+    //     formData[name] = value;
+    // });
 
 });
 
@@ -28,17 +29,17 @@ form.addEventListener('change', event => {
     }
 });
 
-form.addEventListener('input', throttle(onInput => {
-    formData.email = form.nextElementSibling.email.value;
-    formData.message = form.nextElementSibling.message.value;
-    localStorage.setItem('formKey', JSON.stringify(formData));
-}, 1000),
-);
+// form.addEventListener('input', throttle(onInput => {
+//     formData.email = form.elements.email.value;
+//     formData.message = form.elements.message.value;
+//     localStorage.setItem('formKey', JSON.stringify(formData));
+// }, 1000),
+// );
 
 function fillTheForm() {
     let parsedFilters = localStorage.getItem('formKey');
     if (parsedFilters) {
-        const { email, message } = JSON.parse(enteredData);
+        const { email, message } = JSON.parse(parsedFilters);
         form.email.value = email;
         form.message.value = message;
         formData.email = email;
